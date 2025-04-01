@@ -3,12 +3,12 @@ import os
 import tempfile
 from google import genai
 from google.genai import types
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import pandas as pd
 from audio_recorder_streamlit import audio_recorder
 
 # Load environment variables
-load_dotenv()
+#load_dotenv()
 
 # Initialize user data
 users_data = {
