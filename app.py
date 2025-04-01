@@ -78,6 +78,7 @@ def process_audio(audio_path):
     except Exception as e:
         return f"Sorry, I couldn't process your audio. Error: {str(e)}"
 
+
 def send_audio_message(audio_file):
     """Process the audio and send the message"""
     st.session_state.processing = True
