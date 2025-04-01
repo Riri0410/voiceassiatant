@@ -38,6 +38,7 @@ if 'current_tab' not in st.session_state:
 # Initialize Gemini client
 try:
     GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+    client = genai.Client(api_key=GOOGLE_API_KEY)
 except Exception as e:
     st.error(f"Failed to initialize Gemini client: {str(e)}")
 
