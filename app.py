@@ -6,6 +6,7 @@ from google.genai import types
 #from dotenv import load_dotenv
 import pandas as pd
 from audio_recorder_streamlit import audio_recorder
+import toml
 
 # Load environment variables
 #load_dotenv()
