@@ -55,29 +55,38 @@ def save_audio_file(audio_bytes):
 
 
 def process_audio(audio_path):
+    if client is None:
+        return "Error: Voice assistant is not properly configured. Please check your API key."
+    
     try:
-        # Upload the file
-        uploaded_file = client.files.upload(file=audio_path)
-
-        # Create content with prompt - CORRECTED VERSION
+        # Read the audio file as bytes
+        with open(audio_path, "rb") as audio_file:
+            audio_bytes = audio_file.read()
+        
+        # Create the audio part directly without uploading
+        audio_part = types.Part.from_data(
+            data=audio_bytes,
+            mime_type="audio/wav"
+        )
+        
+        # Create content with prompt
         contents = types.Content(
             role="user",
             parts=[
-                types.Part.from_uri(file_uri=uploaded_file.uri, mime_type="audio/wav"),
-                types.Part.from_text(text="""You are a helpful voice assistant. Keep responses concise and friendly."""),
+                audio_part,
+                types.Part.from_text(text="You are a helpful voice assistant. Keep responses concise and friendly."),
             ],
         )
 
-        # Get response from Gemini - CORRECTED MODEL NAME (fixed typo)
+        # Get response from Gemini
         response = client.models.generate_content(
-            model="gemini-2.0-flash-lite",  # Updated to current model name
+            model="gemini-1.5-pro-latest",  # Updated to current model
             contents=[contents]
         )
         return response.text
 
     except Exception as e:
         return f"Sorry, I couldn't process your audio. Error: {str(e)}"
-
 
 def send_audio_message(audio_file):
     """Process the audio and send the message"""
