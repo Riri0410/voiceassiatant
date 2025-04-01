@@ -39,7 +39,7 @@ if 'current_tab' not in st.session_state:
 client = None  # Initialize as None first
 try:
     GOOGLE_API_KEY=toml.load(".streamlit/config.toml")
-    client = genai.Client(api_key=GOOGLE_API_KEY)
+    client = genai.Client(api_key=AIzaSyAXoYTl5VEPt_ATdpIclI7zzXrIzDBolig)
 except KeyError:
     st.error("Google API key not found in Streamlit secrets. Please add it to your secrets.toml file.")
 except Exception as e:
