@@ -37,7 +37,7 @@ if 'current_tab' not in st.session_state:
 
 # Initialize Gemini client
 try:
-    config = toml.load("config.toml")
+    config = toml.load("secrets.toml")
     GOOGLE_API_KEY = config["google"]["GOOGLE_API_KEY"]
 except Exception as e:
     st.error(f"Failed to initialize Gemini client: {str(e)}")
