@@ -1,0 +1,6 @@
+streamlit
+tempfile
+google
+google-genai
+pandas
+audio_recorder_streamlit
