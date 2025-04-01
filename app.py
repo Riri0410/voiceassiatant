@@ -6,7 +6,7 @@ from google.genai import types
 #from dotenv import load_dotenv
 import pandas as pd
 from audio_recorder_streamlit import audio_recorder
-import toml
+# import toml
 
 # Load environment variables
 #load_dotenv()
@@ -37,8 +37,7 @@ if 'current_tab' not in st.session_state:
 
 # Initialize Gemini client
 try:
-    config = toml.load(".streamlit/secrets.tom")
-    GOOGLE_API_KEY = config["google"]["GOOGLE_API_KEY"]
+    GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
 except Exception as e:
     st.error(f"Failed to initialize Gemini client: {str(e)}")
 
