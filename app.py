@@ -36,9 +36,12 @@ if 'current_tab' not in st.session_state:
     st.session_state.current_tab = "Voice Chat"
 
 # Initialize Gemini client
+client = None  # Initialize as None first
 try:
     GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
     client = genai.Client(api_key=GOOGLE_API_KEY)
+except KeyError:
+    st.error("Google API key not found in Streamlit secrets. Please add it to your secrets.toml file.")
 except Exception as e:
     st.error(f"Failed to initialize Gemini client: {str(e)}")
 
